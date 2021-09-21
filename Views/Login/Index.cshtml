@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Available jobs";
+}
+
+@model JobPortalDI.Views.Login.MyViewModel
+
+<style>
+
+    body {
+        padding-bottom: 20px;
+    }
+
+    #divJob {
+        margin: 10px;
+        height: 250px;
+        width: 1000px;
+        background-color: #F5F5F5;
+        border: 1px solid #5D6D7E;
+    }
+
+    #divEachJob {
+        margin-top: 20px;
+    }
+
+    #btn1 {
+        margin-left: 10px;
+    }
+
+    #lgt-btn {
+        background-color: #ff0000;
+        color: white;
+        padding: 15px 25px;
+        text-decoration: none;
+    }
+
+    #ins-btn {
+        background-color: #009933;
+        color: white;
+        padding: 15px 25px;
+        text-decoration: none;
+    }
+</style>
+
+
+<h1>Hi @ViewBag.Username</h1>
+<br>
+<br>
+
+@if (ViewBag.Usertype == "Admin")
+{
+    <p>
+        <a id="ins-btn" asp-controller="Create" asp-action="Create">Create New</a>
+        &emsp;&emsp;
+        @*<a id="lgt-btn" asp-action="Logout">Logout</a>*@
+    </p>
+}
+
+@if (ViewBag.Usertype == "User")
+{
+    <div class="jumbotron">
+        <h1>Find A Job</h1>
+        <br>
+
+        <form asp-controller="Getjob" asp-action="viewJob">
+
+            <select name="category" class="form-control">
+                <option value="0" disabled selected>Choose Category</option>
+                @foreach (var category in Model.ListB)
+                {
+                    // loop through each product
+                    <option value="@category.Id">@Html.DisplayFor(modelItem => category.Name)</option>
+                }
+
+
+            </select>
+
+            <br><br>
+
+            <input type="submit" class="btn btn-lg btn-success" value="FIND">
+
+        </form>
+
+    </div>
+}
+
+<br>
+<br>
+
+@if (ViewBag.Usertype == "Admin")
+{
+    <h3>Jobs you created</h3>
+}
+
+@if (ViewBag.Usertype == "User")
+{
+    <h3>Latest Jobs</h3>
+}
+
+
+
+<br>
+<br>
+
+@foreach (var job in Model.ListA)
+{
+    // loop through each product
+    <div id="divJob">
+        <br>
+        <div class="col-md-10">
+            <h4 id="divEachJob">@Html.DisplayFor(modelItem => job.JobTitle)</h4>
+            <p id="divEachJob">@Html.DisplayFor(modelItem => job.Description)</p>
+
+        </div>
+        <br />
+        <div class="col-md-2">
+            <form asp-controller="Login" asp-action="viewJob" asp-route-id="@job.Id">
+                <button id="btn1" class="btn btn-info">View</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+
+}
+

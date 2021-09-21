@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JobPortalDI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        #nav1, #foo1 {
+            background-color: #000;
+        }
+
+        .bord1 {
+            border-bottom: 3px solid #EB984E;
+        }
+
+        .bord2 {
+            border-top: 3px solid #EB984E;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav id="nav1" class="bord1 navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+            <div class="container">
+                <a asp-controller="Login" asp-action="Index"><img src="~/image/logoimg.jpg" style="height: 70px; width: 120px;"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a style="margin-left: 40px;" class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+
+                        @if (ViewBag.Usertype == "User")
+                        {
+                            <li class="nav-item">
+                                <a style="margin-left: 40px;" class="nav-link text-white" asp-area="" asp-controller="ShowMyJobs" asp-action="ShowMyJobs">My Jobs</a>
+                            </li>
+                        }
+
+
+                        @if (ViewBag.Username != null)
+                        {
+                            <li class="nav-item">
+                                <a style="margin-left: 40px;" class="nav-link text-white" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="margin-left: 40px;" class="nav-link text-white" asp-area="" asp-controller="Register" asp-action="Register">Register</a>
+                            </li>
+                        }
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer id="foo1" class="bord2 footer text-muted">
+        <div class="container">
+            &copy; 2021 - JobPortalDI - ASP.net MVC
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

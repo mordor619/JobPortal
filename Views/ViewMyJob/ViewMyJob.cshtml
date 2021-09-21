@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "My Job";
+}
+
+
+@model JobPortalDI.ProjModel.Myjob
+
+<style>
+    #img1 {
+        height: 150px;
+        width: 200px;
+        border: 1px solid black;
+        border-radius: 2px;
+    }
+
+    #p1 {
+        text-indent: 30px;
+        color: brown;
+        font-weight: 700;
+    }
+
+    #p2 {
+        text-indent: 30px;
+        color: #000;
+        font-style: italic;
+    }
+
+    #del-btn {
+        background-color: #ff0000;
+        color: white;
+        padding: 15px 25px;
+        text-decoration: none;
+    }
+
+    #edt-btn {
+        background-color: #009933;
+        color: white;
+        padding: 15px 25px;
+        text-decoration: none;
+    }
+</style>
+
+<br>
+
+<img id="img1" src="~/image/myjob.png">
+
+<br>
+<br>
+
+<p id="p1">Company Name: </p><p id="p2">@Model.Company</p>
+<br>
+
+<p id="p1">Job Title: </p><p id="p2">@Model.JobTitle</p>
+<br>
+
+<p id="p1">Description: </p><p id="p2">@Model.Description</p>
+<br>
+
+<p id="p1">Salary offered: </p><p id="p2">@Model.Salary</p>
+<br>
+
+<p id="p1">Location: </p><p id="p2">@Model.Location</p>
+<br>
+
+<p id="p1">HR Contact: </p><p id="p2">@Model.ContactUser</p>
+<br>
+
+<p id="p1">Email: </p><p id="p2">@Model.ContactEmail</p>
+<br>
+<br>
+
+
+    <p>
+        <a id="del-btn" asp-controller="DeleteMyJob" asp-action="DeleteMyJob" asp-route-id="@Model.Id">Cancel</a>
+        &emsp;&emsp;
+        <a asp-controller="Login" asp-action="GoBack">&lt;&lt;Go back</a>
+    </p>
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>

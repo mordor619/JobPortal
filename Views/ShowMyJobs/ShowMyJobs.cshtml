@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "My Jobs";
+}
+
+
+@model List<JobPortalDI.ProjModel.Myjob>
+
+<style>
+
+    body {
+        padding-bottom: 20px;
+    }
+
+    #divJob {
+        margin: 10px;
+        height: 250px;
+        width: 1000px;
+        background-color: #F5F5F5;
+        border: 1px solid #5D6D7E;
+    }
+
+    #divEachJob {
+        margin-top: 20px;
+    }
+</style>
+
+<br>
+<br>
+
+<p>
+    <a asp-controller="Login" asp-action="GoBack">&lt;&lt;Go back</a>
+</p>
+<br>
+<br>
+
+<h3>My Jobs...</h3>
+
+<br>
+<br>
+
+@foreach (var myjob in Model)
+{
+    // loop through each product
+    <div id="divJob">
+        <br>
+        <div class="col-md-10">
+            <h4 id="divEachJob">@Html.DisplayFor(modelItem => myjob.JobTitle)</h4>
+            <p id="divEachJob">@Html.DisplayFor(modelItem => myjob.Description)</p>
+
+        </div>
+        <br />
+        <div class="col-md-2">
+            <form asp-controller="ViewMyJob" asp-action="ViewMyJob" asp-route-id="@myjob.Id">
+                <button id="btn1" class="btn btn-info">View</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+
+}

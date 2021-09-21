@@ -1,0 +1,116 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "Edit Job";
+}
+
+@model JobPortalDI.ProjModel.Job
+
+
+<style>
+    #txa1 {
+        width: 500px;
+        height: 200px;
+    }
+
+    input {
+        width: 500px;
+        height: 50px;
+    }
+
+    #p1 {
+        text-indent: 30px;
+        color: brown;
+        font-weight: 700;
+    }
+
+    #p2 {
+        text-indent: 30px;
+        color: #000;
+        font-style: italic;
+    }
+
+    #upd-btn {
+        background-color: #009933;
+        color: white;
+        margin-left: 50px;
+        margin-bottom: 20px;
+        width: 100px;
+        height: 50px;
+    }
+
+    #divfm {
+        margin-left: 150px;
+        margin-right: 150px;
+        height: 1100px;
+        width: 800px;
+        padding: 10px;
+        border: 2px solid black;
+        background-color: beige;
+    }
+</style>
+
+<br>
+<br>
+<h2>Update your post</h2>
+<br>
+
+<div id="divfm">
+    <form id="jobform" asp-controller="Edit" asp-action="Edit" asp-route-id=@ViewBag.id>
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Userid" />
+        <input type="hidden" asp-for="Cid" />
+
+        <p id="p1">Company Name: </p>
+        &emsp;<input type="text" asp-for="Company" required>
+        <br>
+        <br>
+
+        <p id="p1">Job Title: </p>
+        &emsp;<input type="text" asp-for="JobTitle" required>
+        <br>
+        <br>
+
+        <p id="p1">Description(max. 199 words): </p>
+        &emsp;<textarea id="txa1" form="jobform" maxlength="199" asp-for="Description" required></textarea>
+        <br>
+        <br>
+
+        <p id="p1">Salary offered: </p>
+        &emsp;<input type="number" min="30000" max="90000" asp-for="Salary" required>
+        <br>
+        <br>
+
+        <p id="p1">Location: </p>
+        &emsp;<input type="text" asp-for="Location" required>
+        <br>
+        <br>
+
+        <p id="p1">HR Contact: </p>
+        &emsp;<input type="text" asp-for="ContactUser" required>
+        <br>
+        <br>
+
+        <p id="p1">Email: </p>
+        &emsp;<input type="email" asp-for="ContactEmail" required>
+        <br>
+        <br><br><br>
+
+
+        <input type="submit" id="upd-btn" value="Update">
+
+
+    </form>
+
+</div>
+
+<br>
+<br>
+<br>
+
+
